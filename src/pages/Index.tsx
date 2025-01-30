@@ -52,12 +52,20 @@ const Index = () => {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">ID</p>
+                <p className="text-lg font-semibold">yhn4bsd</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">Wallet</p>
+                <p className="text-lg font-semibold truncate">0x1234...5678</p>
+              </div>
+              <div className="space-y-2">
                 <p className="text-sm text-muted-foreground">Current Plan</p>
                 <p className="text-lg font-semibold">Diamond</p>
               </div>
               <div className="space-y-2">
                 <p className="text-sm text-muted-foreground">Active Until</p>
-                <p className="text-lg font-semibold">March 1, 2025</p>
+                <p className="text-lg font-semibold">March 1, 2025, 11:54 PM</p>
               </div>
               <div className="flex items-center">
                 <Button className="w-full">
@@ -88,10 +96,13 @@ const Index = () => {
             <CardTitle className="text-sm font-medium">Total Referred</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">45</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              +5 new this month
-            </p>
+            <a href="/referred-users" className="group">
+              <div className="text-2xl font-bold group-hover:text-primary transition-colors">45</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                +5 new this month
+              </p>
+              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           </CardContent>
         </Card>
 
@@ -127,8 +138,11 @@ const Index = () => {
             <CardTitle className="text-sm font-medium">Bronze Members</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">15</div>
-            <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+            <a href="/bronze-members" className="group">
+              <div className="text-2xl font-bold group-hover:text-primary transition-colors">15</div>
+              <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           </CardContent>
         </Card>
 
@@ -137,8 +151,11 @@ const Index = () => {
             <CardTitle className="text-sm font-medium">Gold Members</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">13</div>
-            <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+            <a href="/gold-members" className="group">
+              <div className="text-2xl font-bold group-hover:text-primary transition-colors">13</div>
+              <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           </CardContent>
         </Card>
 
@@ -147,8 +164,11 @@ const Index = () => {
             <CardTitle className="text-sm font-medium">Diamond Members</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">17</div>
-            <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+            <a href="/diamond-members" className="group">
+              <div className="text-2xl font-bold group-hover:text-primary transition-colors">17</div>
+              <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           </CardContent>
         </Card>
       </div>
