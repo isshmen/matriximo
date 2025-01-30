@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer } from "@/components/ui/chart";
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { Diamond, Gold, Users, DollarSign, Link, Copy, Clock } from "lucide-react";
+import { Diamond, Users, DollarSign, Link, Copy, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -40,7 +40,7 @@ const Index = () => {
     {
       title: "Turnover",
       value: "1,351,014 BUSD",
-      icon: Gold,
+      icon: Diamond,
       change: "+14.6% from last month"
     }
   ];
@@ -90,7 +90,7 @@ const Index = () => {
             </div>
             <div className="text-sm">
               <p className="text-muted-foreground">
-                User gfbd39n s-a înscris în planul Gold sub yhn4bsd
+                User gfbd39n s-a înscris în planul Diamond sub yhn4bsd
               </p>
               <p className="text-xs text-primary">acum 5 ore</p>
             </div>
