@@ -1,24 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer } from "@/components/ui/chart";
-import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { Diamond, Users, DollarSign, Link, Copy, Clock } from "lucide-react";
+import { Diamond, Users, DollarSign, Link, Copy, Clock, ArrowRight, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const { toast } = useToast();
 
-  // Date simulate pentru grafic
-  const activityData = [
-    { month: "Jan", value: 400 },
-    { month: "Feb", value: 300 },
-    { month: "Mar", value: 500 },
-    { month: "Apr", value: 280 },
-    { month: "May", value: 590 },
-    { month: "Jun", value: 320 }
-  ];
+  const copyReferralLink = () => {
+    navigator.clipboard.writeText("site.com/ref/yhn4bsd");
+    toast({
+      title: "Success",
+      description: "Your referral link has been copied to clipboard."
+    });
+  };
 
-  const statsCards = [
+  const platformStats = [
     {
       title: "Total Members",
       value: "1,200",
@@ -45,79 +41,36 @@ const Index = () => {
     }
   ];
 
-  const copyReferralLink = () => {
-    navigator.clipboard.writeText("site.com/ref/yhn4bsd");
-    toast({
-      title: "Link copiat!",
-      description: "Link-ul tău de referral a fost copiat în clipboard."
-    });
-  };
-
   return (
     <div className="container mx-auto p-4 space-y-6">
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {statsCards.map((stat, index) => (
-          <Card key={index} className="bg-card">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                {stat.title}
-              </CardTitle>
-              <stat.icon className="h-4 w-4 text-primary" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground mt-1">
-                {stat.change}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Recent Activity & User Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-card">
+      {/* User Information Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <Card className="bg-card col-span-1 md:col-span-2">
           <CardHeader>
-            <CardTitle>Activitate Recentă</CardTitle>
+            <CardTitle>User Info</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-sm">
-              <p className="text-muted-foreground">
-                User h3pan19b s-a înscris în planul Diamond sub yhn4bsd
-              </p>
-              <p className="text-xs text-primary">acum 2 ore</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">Current Plan</p>
+                <p className="text-lg font-semibold">Diamond</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">Active Until</p>
+                <p className="text-lg font-semibold">March 1, 2025</p>
+              </div>
+              <div className="flex items-center">
+                <Button className="w-full">
+                  <Clock className="mr-2 h-4 w-4" />
+                  Renew Subscription
+                </Button>
+              </div>
             </div>
-            <div className="text-sm">
-              <p className="text-muted-foreground">
-                User gfbd39n s-a înscris în planul Diamond sub yhn4bsd
-              </p>
-              <p className="text-xs text-primary">acum 5 ore</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-card">
-          <CardHeader>
-            <CardTitle>Informații Utilizator</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">ID:</span>
-              <span className="font-medium">yhn4bsd</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Invitat de:</span>
-              <span className="font-medium">gfbd39n</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Data înscrierii:</span>
-              <span className="font-medium">01.01.2025</span>
-            </div>
-            <div className="pt-2">
+            <div className="pt-4">
               <Button 
                 onClick={copyReferralLink}
                 className="w-full flex items-center justify-center gap-2"
+                variant="outline"
               >
                 <Link className="h-4 w-4" />
                 <span>site.com/ref/yhn4bsd</span>
@@ -128,39 +81,123 @@ const Index = () => {
         </Card>
       </div>
 
-      {/* Activity Chart */}
+      {/* User Statistics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Total Referred</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">45</div>
+            <p className="text-xs text-muted-foreground mt-1">
+              +5 new this month
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Monthly Earnings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">3,500 BUSD</div>
+            <p className="text-xs text-muted-foreground mt-1">
+              +12.5% from last month
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Active Plan</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">Diamond</div>
+            <p className="text-xs text-muted-foreground mt-1">
+              29 days remaining
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Plan Statistics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Bronze Members</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">15</div>
+            <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Gold Members</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">13</div>
+            <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Diamond Members</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">17</div>
+            <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* User Activity */}
+      <Card className="bg-card mb-6">
+        <CardHeader>
+          <CardTitle>User Activity</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <p className="text-sm text-muted-foreground">ID</p>
+              <p className="font-medium">h3pan19b</p>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Registration Date</p>
+              <a href="#" className="text-primary hover:underline">
+                30.01.2025, 09:35 PM
+              </a>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Current Plan</p>
+              <p className="font-medium">Diamond</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Platform Activity */}
       <Card className="bg-card">
         <CardHeader>
-          <CardTitle>Activitate Membri</CardTitle>
+          <CardTitle>Platform Activity</CardTitle>
         </CardHeader>
         <CardContent>
-          <ChartContainer className="h-[300px]" config={{}}>
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={activityData}>
-                <XAxis 
-                  dataKey="month" 
-                  stroke="#888888"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="#888888"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                  tickFormatter={(value) => `${value}`}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke="hsl(var(--primary))"
-                  fill="hsl(var(--primary))"
-                  fillOpacity={0.2}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </ChartContainer>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {platformStats.map((stat, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{stat.title}</span>
+                  <stat.icon className="h-4 w-4 text-primary" />
+                </div>
+                <div className="text-2xl font-bold">{stat.value}</div>
+                <p className="text-xs text-muted-foreground">
+                  {stat.change}
+                </p>
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>
