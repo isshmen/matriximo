@@ -50,28 +50,29 @@ const UserInfoCard = ({
             <p className="text-sm text-muted-foreground">Current Plan</p>
             <p className="text-lg font-semibold">{currentPlan}</p>
           </div>
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Active Until</p>
-            <p className="text-lg font-semibold">{activeUntil}</p>
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-muted-foreground">Active Until</p>
+              <p className="text-lg font-semibold">{activeUntil}</p>
+            </div>
+            <Button variant="outline" size="sm" className="w-full">
+              <Clock className="mr-2 h-4 w-4" />
+              Renew Subscription
+            </Button>
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Monthly Earnings</p>
             <p className="text-lg font-semibold">{monthlyEarnings}</p>
             <p className="text-xs text-muted-foreground">{monthlyEarningsChange}</p>
           </div>
-          <div className="space-y-4">
-            <Button className="w-full">
-              <Clock className="mr-2 h-4 w-4" />
-              Renew Subscription
+          <div>
+            <Button className="w-full" onClick={copyReferralLink}>
+              <Copy className="mr-2 h-4 w-4" />
+              Copy Referral Link
             </Button>
-            <div className="flex items-center gap-2">
-              <p className="text-sm text-muted-foreground flex-grow truncate">
-                {referralLink}
-              </p>
-              <Button variant="outline" size="icon" onClick={copyReferralLink}>
-                <Copy className="h-4 w-4" />
-              </Button>
-            </div>
+            <p className="text-xs text-muted-foreground mt-2 text-center">
+              {referralLink}
+            </p>
           </div>
         </div>
       </CardContent>

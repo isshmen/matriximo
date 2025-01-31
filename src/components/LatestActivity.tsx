@@ -6,6 +6,7 @@ interface Activity {
   date: string;
   plan: string;
   activeUntil: string;
+  transactionHash: string;
 }
 
 interface LatestActivityProps {
@@ -26,6 +27,7 @@ const LatestActivity = ({ activities }: LatestActivityProps) => {
               <TableHead>Date</TableHead>
               <TableHead>Plan</TableHead>
               <TableHead>Active Until</TableHead>
+              <TableHead>Info</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -35,6 +37,16 @@ const LatestActivity = ({ activities }: LatestActivityProps) => {
                 <TableCell>{activity.date}</TableCell>
                 <TableCell>{activity.plan}</TableCell>
                 <TableCell>{activity.activeUntil}</TableCell>
+                <TableCell>
+                  <a 
+                    href={`https://bscscan.com/tx/${activity.transactionHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    View Transaction
+                  </a>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
