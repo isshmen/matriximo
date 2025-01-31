@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Diamond, Users, DollarSign } from "lucide-react";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
+import LatestActivity from "@/components/LatestActivity";
+import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -32,6 +34,27 @@ const Index = () => {
     }
   ];
 
+  const latestActivities = [
+    {
+      id: "user123",
+      date: "25.01.2025, 11:53 PM",
+      plan: "Bronze",
+      activeUntil: "25.02.2025, 11:53 PM"
+    },
+    // Add more activities as needed
+  ];
+
+  const recentMembers = [
+    {
+      id: "yhn4bsd",
+      plan: "Diamond",
+      date: "25.01.2025, 11:53 PM",
+      invitedBy: "abc123",
+      transactionHash: "0x123...456"
+    },
+    // Add more members as needed
+  ];
+
   return (
     <div className="container mx-auto p-4 space-y-6">
       <UserInfoCard 
@@ -39,6 +62,8 @@ const Index = () => {
         wallet="0x1234...5678"
         currentPlan="Diamond"
         activeUntil="March 1, 2025, 11:54 PM"
+        monthlyEarnings="3,500 BUSD"
+        monthlyEarningsChange="+12.5% from last month"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -53,18 +78,6 @@ const Index = () => {
                 +5 new this month
               </p>
             </Link>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-card">
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Monthly Earnings</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">3,500 BUSD</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              +12.5% from last month
-            </p>
           </CardContent>
         </Card>
 
@@ -105,7 +118,9 @@ const Index = () => {
         </Card>
       </div>
 
+      <LatestActivity activities={latestActivities} />
       <PlatformStats stats={platformStats} />
+      <RecentNetworkMembers members={recentMembers} />
     </div>
   );
 };
