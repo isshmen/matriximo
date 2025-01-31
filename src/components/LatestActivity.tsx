@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ExternalLink } from "lucide-react";
 
 interface Activity {
   id: string;
@@ -17,7 +18,7 @@ const LatestActivity = ({ activities }: LatestActivityProps) => {
   return (
     <Card className="bg-card">
       <CardHeader>
-        <CardTitle>Latest Activity</CardTitle>
+        <CardTitle>User Activity</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
@@ -42,9 +43,10 @@ const LatestActivity = ({ activities }: LatestActivityProps) => {
                     href={`https://bscscan.com/tx/${activity.transactionHash}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline"
+                    className="text-primary hover:underline inline-flex items-center"
                   >
                     View Transaction
+                    <ExternalLink className="ml-1 h-4 w-4" />
                   </a>
                 </TableCell>
               </TableRow>

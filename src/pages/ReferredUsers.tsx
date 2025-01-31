@@ -54,14 +54,16 @@ const ReferredUsers = () => {
         wallet="0x1234...5678"
         currentPlan="Diamond"
         activeUntil="March 1, 2025, 11:54 PM"
+        monthlyEarnings="3,500 BUSD"
+        monthlyEarningsChange="+12.5% from last month"
       />
 
       <Card className="bg-card">
         <CardHeader>
-          <CardTitle>All Referred Users</CardTitle>
+          <CardTitle>Referred Users</CardTitle>
         </CardHeader>
         <CardContent>
-          <MembersTable members={referredUsers} title="All Referred Users" />
+          <MembersTable members={referredUsers} title="Referred Users" />
         </CardContent>
       </Card>
 

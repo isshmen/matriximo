@@ -20,10 +20,10 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/referred-users" element={<ReferredUsers />} />
-          <Route path="/bronze-members" element={<BronzeMembers />} />
-          <Route path="/gold-members" element={<GoldMembers />} />
-          <Route path="/diamond-members" element={<DiamondMembers />} />
+          <Route path="/:userId/referred-users" element={<ReferredUsers />} />
+          <Route path="/:userId/bronze-members" element={<BronzeMembers />} />
+          <Route path="/:userId/gold-members" element={<GoldMembers />} />
+          <Route path="/:userId/diamond-members" element={<DiamondMembers />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
