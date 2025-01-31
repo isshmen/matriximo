@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import UserInfoCard from "@/components/UserInfoCard";
+import PlatformStats from "@/components/PlatformStats";
+import MembersTable from "@/components/MembersTable";
 import { Diamond, Users, DollarSign } from "lucide-react";
 
 const BronzeMembers = () => {
@@ -41,87 +43,23 @@ const BronzeMembers = () => {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      {/* User Information Section */}
-      <Card className="bg-card">
-        <CardHeader>
-          <CardTitle>User Info</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">ID</p>
-              <p className="text-lg font-semibold">yhn4bsd</p>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">Wallet</p>
-              <p className="text-lg font-semibold truncate">0x1234...5678</p>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">Current Plan</p>
-              <p className="text-lg font-semibold">Diamond</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <UserInfoCard 
+        id="yhn4bsd"
+        wallet="0x1234...5678"
+        currentPlan="Diamond"
+        activeUntil="March 1, 2025, 11:54 PM"
+      />
 
-      {/* Bronze Members List */}
       <Card className="bg-card">
         <CardHeader>
           <CardTitle>Bronze Members</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>ID</TableHead>
-                <TableHead>Registration Date</TableHead>
-                <TableHead>Current Plan</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {bronzeMembers.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>{user.id}</TableCell>
-                  <TableCell>
-                    <a 
-                      href={`https://bscscan.com/tx/${user.transactionHash}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline"
-                    >
-                      {user.registrationDate}
-                    </a>
-                  </TableCell>
-                  <TableCell>{user.currentPlan}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <MembersTable members={bronzeMembers} title="Bronze Members" />
         </CardContent>
       </Card>
 
-      {/* Platform Activity */}
-      <Card className="bg-card">
-        <CardHeader>
-          <CardTitle>Platform Activity</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {platformStats.map((stat, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{stat.title}</span>
-                  <stat.icon className="h-4 w-4 text-primary" />
-                </div>
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <p className="text-xs text-muted-foreground">
-                  {stat.change}
-                </p>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <PlatformStats stats={platformStats} />
     </div>
   );
 };

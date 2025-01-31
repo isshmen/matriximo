@@ -1,19 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Diamond, Users, DollarSign, Link, Copy, Clock, ArrowRight, Wallet } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { Diamond, Users, DollarSign } from "lucide-react";
+import UserInfoCard from "@/components/UserInfoCard";
+import PlatformStats from "@/components/PlatformStats";
+import { Link } from "react-router-dom";
 
 const Index = () => {
-  const { toast } = useToast();
-
-  const copyReferralLink = () => {
-    navigator.clipboard.writeText("site.com/ref/yhn4bsd");
-    toast({
-      title: "Success",
-      description: "Your referral link has been copied to clipboard."
-    });
-  };
-
   const platformStats = [
     {
       title: "Total Members",
@@ -43,66 +34,25 @@ const Index = () => {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      {/* User Information Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <Card className="bg-card col-span-1 md:col-span-2">
-          <CardHeader>
-            <CardTitle>User Info</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <p className="text-sm text-muted-foreground">ID</p>
-                <p className="text-lg font-semibold">yhn4bsd</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm text-muted-foreground">Wallet</p>
-                <p className="text-lg font-semibold truncate">0x1234...5678</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm text-muted-foreground">Current Plan</p>
-                <p className="text-lg font-semibold">Diamond</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm text-muted-foreground">Active Until</p>
-                <p className="text-lg font-semibold">March 1, 2025, 11:54 PM</p>
-              </div>
-              <div className="flex items-center">
-                <Button className="w-full">
-                  <Clock className="mr-2 h-4 w-4" />
-                  Renew Subscription
-                </Button>
-              </div>
-            </div>
-            <div className="pt-4">
-              <Button 
-                onClick={copyReferralLink}
-                className="w-full flex items-center justify-center gap-2"
-                variant="outline"
-              >
-                <Link className="h-4 w-4" />
-                <span>site.com/ref/yhn4bsd</span>
-                <Copy className="h-4 w-4" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <UserInfoCard 
+        id="yhn4bsd"
+        wallet="0x1234...5678"
+        currentPlan="Diamond"
+        activeUntil="March 1, 2025, 11:54 PM"
+      />
 
-      {/* User Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="bg-card">
           <CardHeader>
             <CardTitle className="text-sm font-medium">Total Referred</CardTitle>
           </CardHeader>
           <CardContent>
-            <a href="/referred-users" className="group">
+            <Link to="/referred-users" className="group">
               <div className="text-2xl font-bold group-hover:text-primary transition-colors">45</div>
               <p className="text-xs text-muted-foreground mt-1">
                 +5 new this month
               </p>
-              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
+            </Link>
           </CardContent>
         </Card>
 
@@ -120,29 +70,13 @@ const Index = () => {
 
         <Card className="bg-card">
           <CardHeader>
-            <CardTitle className="text-sm font-medium">Active Plan</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">Diamond</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              29 days remaining
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Plan Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <Card className="bg-card">
-          <CardHeader>
             <CardTitle className="text-sm font-medium">Bronze Members</CardTitle>
           </CardHeader>
           <CardContent>
-            <a href="/bronze-members" className="group">
+            <Link to="/bronze-members" className="group">
               <div className="text-2xl font-bold group-hover:text-primary transition-colors">15</div>
               <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
-              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
+            </Link>
           </CardContent>
         </Card>
 
@@ -151,11 +85,10 @@ const Index = () => {
             <CardTitle className="text-sm font-medium">Gold Members</CardTitle>
           </CardHeader>
           <CardContent>
-            <a href="/gold-members" className="group">
+            <Link to="/gold-members" className="group">
               <div className="text-2xl font-bold group-hover:text-primary transition-colors">13</div>
               <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
-              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
+            </Link>
           </CardContent>
         </Card>
 
@@ -164,62 +97,15 @@ const Index = () => {
             <CardTitle className="text-sm font-medium">Diamond Members</CardTitle>
           </CardHeader>
           <CardContent>
-            <a href="/diamond-members" className="group">
+            <Link to="/diamond-members" className="group">
               <div className="text-2xl font-bold group-hover:text-primary transition-colors">17</div>
               <p className="text-xs text-muted-foreground mt-1">Total referred users</p>
-              <ArrowRight className="h-4 w-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
+            </Link>
           </CardContent>
         </Card>
       </div>
 
-      {/* User Activity */}
-      <Card className="bg-card mb-6">
-        <CardHeader>
-          <CardTitle>User Activity</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <p className="text-sm text-muted-foreground">ID</p>
-              <p className="font-medium">h3pan19b</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Registration Date</p>
-              <a href="#" className="text-primary hover:underline">
-                30.01.2025, 09:35 PM
-              </a>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Current Plan</p>
-              <p className="font-medium">Diamond</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Platform Activity */}
-      <Card className="bg-card">
-        <CardHeader>
-          <CardTitle>Platform Activity</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {platformStats.map((stat, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{stat.title}</span>
-                  <stat.icon className="h-4 w-4 text-primary" />
-                </div>
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <p className="text-xs text-muted-foreground">
-                  {stat.change}
-                </p>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <PlatformStats stats={platformStats} />
     </div>
   );
 };
