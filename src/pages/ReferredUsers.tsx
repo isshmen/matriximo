@@ -13,13 +13,15 @@ const ReferredUsers = () => {
       id: "h3pan19b",
       registrationDate: "30.01.2025, 09:35 PM",
       transactionHash: "0x123...abc",
-      currentPlan: "Diamond"
+      currentPlan: "Diamond",
+      activeUntil: "28.02.2025, 09:35 PM"
     },
     {
       id: "k7mxq23r",
       registrationDate: "29.01.2025, 03:22 PM",
       transactionHash: "0x456...def",
-      currentPlan: "Gold"
+      currentPlan: "Gold",
+      activeUntil: "27.02.2025, 03:22 PM"
     }
   ];
 
@@ -69,10 +71,10 @@ const ReferredUsers = () => {
 
       <Card className="bg-card">
         <CardHeader>
-          <CardTitle>Referred Users</CardTitle>
+          <CardTitle>Total Members</CardTitle>
         </CardHeader>
         <CardContent>
-          <MembersTable members={referredUsers} title="Referred Users" />
+          <MembersTable members={referredUsers} title="Total Members" />
         </CardContent>
       </Card>
 

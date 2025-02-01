@@ -3,14 +3,18 @@ import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
 import MembersTable from "@/components/MembersTable";
 import { Diamond, Users, DollarSign } from "lucide-react";
+import { useParams } from "react-router-dom";
 
 const GoldMembers = () => {
+  const { userId } = useParams();
+
   const goldMembers = [
     {
       id: "m4wxr78t",
       registrationDate: "27.01.2025, 02:45 PM",
       transactionHash: "0xabc...123",
-      currentPlan: "Gold"
+      currentPlan: "Gold",
+      activeUntil: "25.02.2025, 02:45 PM"
     }
   ];
 
@@ -41,15 +45,21 @@ const GoldMembers = () => {
     }
   ];
 
+  const handleLogout = () => {
+    console.log("Logging out...");
+  };
+
   return (
     <div className="container mx-auto p-4 space-y-6">
       <UserInfoCard 
-        id="yhn4bsd"
+        id={userId || ""}
         wallet="0x1234...5678"
         currentPlan="Diamond"
         activeUntil="March 1, 2025, 11:54 PM"
         monthlyEarnings="3,500 BUSD"
         monthlyEarningsChange="+12.5% from last month"
+        totalEarnings="42,000 BUSD"
+        onLogout={handleLogout}
       />
 
       <Card className="bg-card">
@@ -61,7 +71,7 @@ const GoldMembers = () => {
         </CardContent>
       </Card>
 
-      <PlatformStats stats={platformStats} />
+      <PlatformStats stats={platformStats} username={userId || ""} />
     </div>
   );
 };
