@@ -9,6 +9,7 @@ import ReferredUsers from "./pages/ReferredUsers";
 import BronzeMembers from "./pages/BronzeMembers";
 import GoldMembers from "./pages/GoldMembers";
 import DiamondMembers from "./pages/DiamondMembers";
+import UserProfile from "./pages/UserProfile";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/:userId" element={<UserProfile />} />
           <Route path="/:userId/referred-members" element={<ReferredUsers />} />
           <Route path="/:userId/bronze-members" element={<BronzeMembers />} />
           <Route path="/:userId/gold-members" element={<GoldMembers />} />
