@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Clock, Wallet, Copy } from "lucide-react";
+import { Clock, Wallet, Copy, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -10,6 +10,8 @@ interface UserInfoCardProps {
   activeUntil: string;
   monthlyEarnings: string;
   monthlyEarningsChange: string;
+  totalEarnings: string;
+  onLogout: () => void;
 }
 
 const UserInfoCard = ({ 
@@ -18,7 +20,9 @@ const UserInfoCard = ({
   currentPlan, 
   activeUntil,
   monthlyEarnings,
-  monthlyEarningsChange 
+  monthlyEarningsChange,
+  totalEarnings,
+  onLogout
 }: UserInfoCardProps) => {
   const { toast } = useToast();
   const referralLink = `site.com/ref/${id}`;
@@ -44,26 +48,39 @@ const UserInfoCard = ({
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Wallet</p>
-            <p className="text-lg font-semibold truncate">{wallet}</p>
+            <div className="flex items-center justify-between">
+              <p className="text-lg font-semibold truncate">{wallet}</p>
+              <button 
+                onClick={onLogout}
+                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1"
+              >
+                <LogOut className="h-3 w-3" />
+                Logout
+              </button>
+            </div>
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Current Plan</p>
             <p className="text-lg font-semibold">{currentPlan}</p>
           </div>
-          <div className="space-y-4">
-            <div>
-              <p className="text-sm text-muted-foreground">Active Until</p>
-              <p className="text-lg font-semibold">{activeUntil}</p>
-            </div>
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground">Active Until</p>
+            <p className="text-lg font-semibold">{activeUntil}</p>
             <Button variant="outline" size="sm" className="w-full">
               <Clock className="mr-2 h-4 w-4" />
               Renew Subscription
             </Button>
           </div>
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Monthly Earnings</p>
-            <p className="text-lg font-semibold">{monthlyEarnings}</p>
-            <p className="text-xs text-muted-foreground">{monthlyEarningsChange}</p>
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-muted-foreground">Monthly Earnings</p>
+              <p className="text-lg font-semibold">{monthlyEarnings}</p>
+              <p className="text-xs text-muted-foreground">{monthlyEarningsChange}</p>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Total Earnings</p>
+              <p className="text-lg font-semibold">{totalEarnings}</p>
+            </div>
           </div>
           <div>
             <Button className="w-full" onClick={copyReferralLink}>

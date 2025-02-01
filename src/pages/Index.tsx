@@ -7,30 +7,36 @@ import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  const currentUser = "yhn4bsd"; // This would come from your auth context
+
   const platformStats = [
     {
       title: "Total Referred",
       value: "45",
       icon: Users,
-      change: "+5 new this month"
+      change: "+5 new this month",
+      link: `/${currentUser}/referred-users`
     },
     {
       title: "Bronze Members",
       value: "15",
       icon: Users,
-      change: "+3 new this month"
+      change: "+3 new this month",
+      link: `/${currentUser}/bronze-members`
     },
     {
       title: "Gold Members",
       value: "13",
       icon: Users,
-      change: "+4 new this month"
+      change: "+4 new this month",
+      link: `/${currentUser}/gold-members`
     },
     {
       title: "Diamond Members",
       value: "17",
       icon: Diamond,
-      change: "+2 new this month"
+      change: "+2 new this month",
+      link: `/${currentUser}/diamond-members`
     }
   ];
 
@@ -56,6 +62,11 @@ const Index = () => {
     // Add more members as needed
   ];
 
+  const handleLogout = () => {
+    // Implement wallet disconnect logic here
+    console.log("Logging out...");
+  };
+
   return (
     <div className="container mx-auto p-4 space-y-6">
       <UserInfoCard 
@@ -65,26 +76,12 @@ const Index = () => {
         activeUntil="March 1, 2025, 11:54 PM"
         monthlyEarnings="3,500 BUSD"
         monthlyEarningsChange="+12.5% from last month"
+        totalEarnings="42,000 BUSD"
+        onLogout={handleLogout}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        {platformStats.map((stat, index) => (
-          <Card key={index} className="bg-card">
-            <CardHeader>
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground mt-1">
-                {stat.change}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
+      <PlatformStats stats={platformStats} username={currentUser} />
       <LatestActivity activities={latestActivities} />
-      <PlatformStats stats={platformStats} />
       <RecentNetworkMembers members={recentMembers} />
     </div>
   );

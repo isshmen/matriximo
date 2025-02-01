@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface NetworkMember {
   id: string;
@@ -24,9 +25,14 @@ const RecentNetworkMembers = ({ members }: RecentNetworkMembersProps) => {
           {members.map((member) => (
             <div key={member.id} className="p-4 bg-secondary rounded-lg">
               <p className="text-base md:text-lg">
-                <span className="font-semibold">{member.id}</span> has subscribed to{" "}
+                <Link to={`/${member.id}`} className="font-semibold hover:text-primary">
+                  {member.id}
+                </Link>
+                {" "}has subscribed to{" "}
                 <span className="text-primary">{member.plan}</span> on {member.date}, invited by{" "}
-                <span className="font-semibold">{member.invitedBy}</span>
+                <Link to={`/${member.invitedBy}`} className="font-semibold hover:text-primary">
+                  {member.invitedBy}
+                </Link>
                 {" - "}
                 <a
                   href={`https://bscscan.com/tx/${member.transactionHash}`}
