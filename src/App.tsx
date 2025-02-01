@@ -20,7 +20,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/:userId/referred-users" element={<ReferredUsers />} />
+          <Route path="/:userId/referred-members" element={<ReferredUsers />} />
           <Route path="/:userId/bronze-members" element={<BronzeMembers />} />
           <Route path="/:userId/gold-members" element={<GoldMembers />} />
           <Route path="/:userId/diamond-members" element={<DiamondMembers />} />
