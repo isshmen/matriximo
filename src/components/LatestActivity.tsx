@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Activity {
   id: string;
@@ -34,7 +35,11 @@ const LatestActivity = ({ activities }: LatestActivityProps) => {
           <TableBody>
             {activities.map((activity) => (
               <TableRow key={activity.id}>
-                <TableCell>{activity.id}</TableCell>
+                <TableCell>
+                  <Link to={`/${activity.id}`} className="text-primary hover:underline">
+                    {activity.id}
+                  </Link>
+                </TableCell>
                 <TableCell>{activity.date}</TableCell>
                 <TableCell>{activity.plan}</TableCell>
                 <TableCell>{activity.activeUntil}</TableCell>

@@ -4,10 +4,11 @@ import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
 import LatestActivity from "@/components/LatestActivity";
 import RecentNetworkMembers from "@/components/RecentNetworkMembers";
-import { Link } from "react-router-dom";
+import { sampleUsers, getRandomUsers } from "../data/sampleUsers";
 
 const Index = () => {
-  const currentUser = "yhn4bsd"; // This would come from your auth context
+  const currentUser = sampleUsers[0]; // Using first user as current user
+  const randomUsers = getRandomUsers(5); // Get 5 random users for recent activity
 
   const platformStats = [
     {
@@ -15,72 +16,59 @@ const Index = () => {
       value: "45",
       icon: Users,
       change: "+5 new this month",
-      link: `/${currentUser}/referred-users`
+      link: `/${currentUser.id}/referred-users`
     },
     {
       title: "Bronze Members",
       value: "15",
       icon: Users,
       change: "+3 new this month",
-      link: `/${currentUser}/bronze-members`
+      link: `/${currentUser.id}/bronze-members`
     },
     {
       title: "Gold Members",
       value: "13",
       icon: Users,
       change: "+4 new this month",
-      link: `/${currentUser}/gold-members`
+      link: `/${currentUser.id}/gold-members`
     },
     {
       title: "Diamond Members",
       value: "17",
       icon: Diamond,
       change: "+2 new this month",
-      link: `/${currentUser}/diamond-members`
+      link: `/${currentUser.id}/diamond-members`
     }
   ];
 
-  const latestActivities = [
-    {
-      id: "user123",
-      date: "25.01.2025, 11:53 PM",
-      plan: "Bronze",
-      activeUntil: "25.02.2025, 11:53 PM",
-      transactionHash: "0x123...456"
-    },
-    // Add more activities as needed
-  ];
+  const latestActivities = randomUsers.map(user => ({
+    id: user.id,
+    date: "25.01.2025, 11:53 PM",
+    plan: user.currentPlan,
+    activeUntil: user.activeUntil,
+    transactionHash: "0x123...456"
+  }));
 
-  const recentMembers = [
-    {
-      id: "yhn4bsd",
-      plan: "Diamond",
-      date: "25.01.2025, 11:53 PM",
-      invitedBy: "abc123",
-      transactionHash: "0x123...456"
-    },
-    // Add more members as needed
-  ];
+  const recentMembers = randomUsers.map(user => ({
+    id: user.id,
+    plan: user.currentPlan,
+    date: "25.01.2025, 11:53 PM",
+    invitedBy: "abc123",
+    transactionHash: "0x123...456"
+  }));
 
   const handleLogout = () => {
-    // Implement wallet disconnect logic here
     console.log("Logging out...");
   };
 
   return (
     <div className="container mx-auto p-4 space-y-6">
       <UserInfoCard 
-        id="yhn4bsd"
-        wallet="0x1234...5678"
-        currentPlan="Diamond"
-        activeUntil="March 1, 2025, 11:54 PM"
-        monthlyEarnings="3,500 BUSD"
-        monthlyEarningsChange="+12.5% from last month"
-        totalEarnings="42,000 BUSD"
+        {...currentUser}
         onLogout={handleLogout}
       />
 
-      <PlatformStats stats={platformStats} username={currentUser} />
+      <PlatformStats stats={platformStats} username={currentUser.id} />
       <LatestActivity activities={latestActivities} />
       <RecentNetworkMembers members={recentMembers} />
     </div>
