@@ -13,6 +13,7 @@ interface UserInfoCardProps {
   monthlyEarningsChange: string;
   totalEarnings: string;
   onLogout: () => void;
+  isOwner?: boolean;
 }
 
 const UserInfoCard = ({ 
@@ -23,7 +24,8 @@ const UserInfoCard = ({
   monthlyEarnings,
   monthlyEarningsChange,
   totalEarnings,
-  onLogout
+  onLogout,
+  isOwner = false
 }: UserInfoCardProps) => {
   const { toast } = useToast();
   const referralLink = `site.com/ref/${id}`;
@@ -75,13 +77,15 @@ const UserInfoCard = ({
               <p className="text-sm text-muted-foreground">Wallet</p>
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold truncate">{wallet}</p>
-                <button 
-                  onClick={onLogout}
-                  className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1"
-                >
-                  <LogOut className="h-3 w-3" />
-                  Logout
-                </button>
+                {isOwner && (
+                  <button 
+                    onClick={onLogout}
+                    className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1"
+                  >
+                    <LogOut className="h-3 w-3" />
+                    Logout
+                  </button>
+                )}
               </div>
             </div>
           </div>

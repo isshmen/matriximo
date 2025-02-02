@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
 import RecentNetworkMembers from "@/components/RecentNetworkMembers";
-import { Diamond, Users, DollarSign } from "lucide-react";
+import { Users, DollarSign, ArrowRightLeft } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { getUserById, getRandomUsers } from "../data/sampleUsers";
 
@@ -23,31 +23,21 @@ const UserProfile = () => {
   const platformStats = [
     {
       title: "Total Members",
-      value: "45",
+      value: "152,394",
       icon: Users,
-      change: "+5 new this month",
-      link: `/${userId}/referred-members`
+      change: "+1,234 this month"
     },
     {
-      title: "Bronze Members",
-      value: "15",
-      icon: Users,
-      change: "+3 new this month",
-      link: `/${userId}/bronze-members`
+      title: "Members Earned",
+      value: "400,293 BUSD",
+      icon: DollarSign,
+      change: "+23,456 BUSD this month"
     },
     {
-      title: "Gold Members",
-      value: "13",
-      icon: Users,
-      change: "+4 new this month",
-      link: `/${userId}/gold-members`
-    },
-    {
-      title: "Diamond Members",
-      value: "17",
-      icon: Diamond,
-      change: "+2 new this month",
-      link: `/${userId}/diamond-members`
+      title: "Transactions",
+      value: "153,499",
+      icon: ArrowRightLeft,
+      change: "+2,345 this month"
     }
   ];
 
@@ -68,9 +58,8 @@ const UserProfile = () => {
       <UserInfoCard 
         {...user}
         onLogout={handleLogout}
+        isOwner={false}
       />
-
-      <PlatformStats stats={platformStats} username={userId || ""} />
       
       <Card className="bg-card">
         <CardHeader>
@@ -80,6 +69,11 @@ const UserProfile = () => {
           <RecentNetworkMembers members={recentMembers} />
         </CardContent>
       </Card>
+
+      <PlatformStats 
+        stats={platformStats}
+        className="mt-6"
+      />
     </div>
   );
 };

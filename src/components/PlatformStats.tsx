@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Diamond, Users, DollarSign } from "lucide-react";
+import { Diamond, Users, DollarSign, ArrowRightLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface PlatformStat {
@@ -13,13 +13,15 @@ interface PlatformStat {
 interface PlatformStatsProps {
   stats: PlatformStat[];
   username?: string;
+  title?: string;
+  className?: string;
 }
 
-const PlatformStats = ({ stats, username }: PlatformStatsProps) => {
+const PlatformStats = ({ stats, username, title = "Platform Statistics", className }: PlatformStatsProps) => {
   return (
-    <Card className="bg-card">
+    <Card className={`bg-card ${className}`}>
       <CardHeader>
-        <CardTitle>Platform Statistics</CardTitle>
+        <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
