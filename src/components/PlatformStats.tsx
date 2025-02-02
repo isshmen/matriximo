@@ -17,9 +17,9 @@ interface PlatformStatsProps {
 
 const PlatformStats = ({ stats, username }: PlatformStatsProps) => {
   return (
-    <Card className="bg-card">
+    <Card className="bg-card sticky top-4">
       <CardHeader>
-        <CardTitle>{username}'s Network</CardTitle>
+        <CardTitle>Platform Statistics</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

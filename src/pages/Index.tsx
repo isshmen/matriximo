@@ -12,11 +12,11 @@ const Index = () => {
 
   const platformStats = [
     {
-      title: "Total Referred",
+      title: "Total Members",
       value: "45",
       icon: Users,
       change: "+5 new this month",
-      link: `/${currentUser.id}/referred-users`
+      link: `/${currentUser.id}/referred-members`
     },
     {
       title: "Bronze Members",
