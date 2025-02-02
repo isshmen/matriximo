@@ -12,12 +12,11 @@ interface PlatformStat {
 
 interface PlatformStatsProps {
   stats: PlatformStat[];
-  username: string;
 }
 
-const PlatformStats = ({ stats, username }: PlatformStatsProps) => {
+const PlatformStats = ({ stats }: PlatformStatsProps) => {
   return (
-    <Card className="bg-card sticky top-4">
+    <Card className="bg-card">
       <CardHeader>
         <CardTitle>Platform Statistics</CardTitle>
       </CardHeader>
