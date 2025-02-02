@@ -12,6 +12,7 @@ interface PlatformStat {
 
 interface PlatformStatsProps {
   stats: PlatformStat[];
+  username?: string; // Added username as an optional prop
 }
 
 const PlatformStats = ({ stats }: PlatformStatsProps) => {
