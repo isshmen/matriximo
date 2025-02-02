@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import UserProfile from "./pages/UserProfile";
 import BronzeMembers from "./pages/BronzeMembers";
@@ -15,6 +15,9 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Add redirect from root to dashboard */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/members" element={<ReferredUsers />} />
         <Route path="/dashboard/bronze-members" element={<BronzeMembers />} />
