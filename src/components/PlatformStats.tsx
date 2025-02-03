@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Diamond, Users, DollarSign, ArrowRightLeft } from "lucide-react";
+import { Diamond, Users, DollarSign, ArrowRightLeft, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface PlatformStat {
