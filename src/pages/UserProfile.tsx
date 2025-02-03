@@ -1,50 +1,62 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
-import RecentNetworkMembers from "@/components/RecentNetworkMembers";
-import LatestActivity from "@/components/LatestActivity";
 import { Users, DollarSign, ArrowRightLeft, Diamond } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { getUserById } from "../data/sampleUsers";
+import LatestActivity from "@/components/LatestActivity";
+import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 
 const UserProfile = () => {
   const { userId } = useParams();
   const user = getUserById(userId || "");
   const isLoggedUser = userId === "user123"; // This should be replaced with actual auth logic
 
+  if (!user) {
+    return (
+      <div className="container mx-auto p-4">
+        <Card className="bg-card">
+          <CardContent className="p-6">
+            <p className="text-center text-lg">User not found</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   // User-specific statistics
   const userStats = [
     {
       title: "Total Members",
-      value: user?.referredUsers?.length.toString() || "0",
+      value: user.referredUsers.length.toString(),
       icon: Users,
       change: "+5 new this month",
       link: `/${userId}/referred-members`
     },
     {
       title: "Bronze Members",
-      value: user?.bronzeMembers?.length.toString() || "0",
+      value: user.bronzeMembers.length.toString(),
       icon: Users,
       change: "+3 new this month",
       link: `/${userId}/bronze-members`
     },
     {
       title: "Gold Members",
-      value: user?.goldMembers?.length.toString() || "0",
+      value: user.goldMembers.length.toString(),
       icon: Users,
       change: "+4 new this month",
       link: `/${userId}/gold-members`
     },
     {
       title: "Diamond Members",
-      value: user?.diamondMembers?.length.toString() || "0",
+      value: user.diamondMembers.length.toString(),
       icon: Diamond,
       change: "+2 new this month",
       link: `/${userId}/diamond-members`
     }
   ];
 
-  // Platform statistics
+  // Platform statistics (same for all users)
   const platformStats = [
     {
       title: "Total Members",
@@ -98,39 +110,21 @@ const UserProfile = () => {
 
   const latestActivities = [
     {
-      id: "act1",
+      id: user.id,
       date: "25.01.2025, 11:53 PM",
-      plan: "Gold",
-      activeUntil: "25.02.2025, 11:53 PM",
+      plan: user.currentPlan,
+      activeUntil: user.activeUntil,
       transactionHash: "0x123...456"
-    },
-    {
-      id: "act2",
-      date: "24.01.2025, 10:30 PM",
-      plan: "Diamond",
-      activeUntil: "24.02.2025, 10:30 PM",
-      transactionHash: "0x789...012"
     }
   ];
 
-  const recentMembers = [
-    {
-      id: "member1",
-      plan: "Diamond",
-      date: "25.01.2025, 11:53 PM",
-      invitedBy: userId || "",
-      transactionHash: "0x123...456"
-    },
-    {
-      id: "member2",
-      plan: "Gold",
-      date: "24.01.2025, 10:30 PM",
-      invitedBy: userId || "",
-      transactionHash: "0x789...012"
-    }
-  ];
-
-  if (!user) return <div>User not found</div>;
+  const recentMembers = user.referredUsers.map(memberId => ({
+    id: memberId,
+    plan: "Gold", // This should come from actual user data
+    date: "25.01.2025, 11:53 PM",
+    invitedBy: user.id,
+    transactionHash: "0x123...456"
+  }));
 
   return (
     <div className="container mx-auto p-4 space-y-6">
