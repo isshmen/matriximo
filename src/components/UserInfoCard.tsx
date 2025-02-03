@@ -57,10 +57,12 @@ const UserInfoCard = ({
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">Active Until</p>
               <p className="text-lg font-semibold">{activeUntil}</p>
-              <Button variant="outline" size="sm" className="w-full">
-                <Clock className="mr-2 h-4 w-4" />
-                Renew Subscription
-              </Button>
+              {isOwner && (
+                <Button variant="outline" size="sm" className="w-full">
+                  <Clock className="mr-2 h-4 w-4" />
+                  Renew Subscription
+                </Button>
+              )}
             </div>
             <div className="space-y-4">
               <div>
