@@ -108,15 +108,14 @@ const UserProfile = () => {
     }
   ];
 
-  const latestActivities = [
-    {
-      id: user.id,
-      date: "25.01.2025, 11:53 PM",
-      plan: user.currentPlan,
-      activeUntil: user.activeUntil,
-      transactionHash: "0x123...456"
-    }
-  ];
+  // Generate activities based on user's referred members
+  const latestActivities = user.referredUsers.map(memberId => ({
+    id: memberId,
+    date: "25.01.2025, 11:53 PM",
+    plan: "Gold", // This should come from actual user data
+    activeUntil: "25.02.2025, 11:53 PM",
+    transactionHash: "0x123...456"
+  }));
 
   const recentMembers = user.referredUsers.map(memberId => ({
     id: memberId,
@@ -142,19 +141,19 @@ const UserProfile = () => {
       
       <Card className="bg-card">
         <CardHeader>
-          <CardTitle>Network Overview</CardTitle>
+          <CardTitle>Latest Activity</CardTitle>
         </CardHeader>
         <CardContent>
-          <RecentNetworkMembers members={recentMembers} />
+          <LatestActivity activities={latestActivities} />
         </CardContent>
       </Card>
 
       <Card className="bg-card">
         <CardHeader>
-          <CardTitle>Latest Activity</CardTitle>
+          <CardTitle>Network Overview</CardTitle>
         </CardHeader>
         <CardContent>
-          <LatestActivity activities={latestActivities} />
+          <RecentNetworkMembers members={recentMembers} />
         </CardContent>
       </Card>
 
