@@ -1,4 +1,4 @@
-```typescript
+// Define the network members array first
 const networkMembers = [
   {
     id: "member10",
@@ -23,7 +23,8 @@ const networkMembers = [
   }
 ];
 
-export const sampleUsers = [
+// Define users array
+const users = [
   {
     id: "member1",
     wallet: "0x1234...5678",
@@ -243,12 +244,14 @@ export const sampleUsers = [
   }
 ];
 
+// Export functions and data
+export const sampleUsers = users;
+
 export const getRandomUsers = (count: number) => {
-  const shuffled = [...sampleUsers].sort(() => 0.5 - Math.random());
+  const shuffled = [...users].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
 export const getUserById = (id: string) => {
-  return sampleUsers.find(user => user.id === id);
+  return users.find(user => user.id === id);
 };
-```
