@@ -1,25 +1,42 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DashboardLayout from "@/components/DashboardLayout";
 import MembersTable from "@/components/MembersTable";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
 import LatestActivity from "@/components/LatestActivity";
+import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 import { Users, DollarSign, ArrowRightLeft, Diamond } from "lucide-react";
 import { getUserById } from "@/data/sampleUsers";
+import { useState } from "react";
 
 const ReferredUsers = () => {
-  const currentUser = getUserById("yhn4bsd");
+  const [filter, setFilter] = useState("all");
+  const currentUser = getUserById("member1"); // This should be replaced with actual logged user
   
   if (!currentUser) return null;
 
-  const referredUsers = currentUser.referredUsers.map(userId => {
+  const getFilteredMembers = () => {
+    switch (filter) {
+      case "bronze":
+        return currentUser.bronzeMembers;
+      case "gold":
+        return currentUser.goldMembers;
+      case "diamond":
+        return currentUser.diamondMembers;
+      default:
+        return currentUser.referredUsers;
+    }
+  };
+
+  const members = getFilteredMembers().map(userId => {
     const user = getUserById(userId);
     return {
       id: userId,
       registrationDate: "30.01.2025, 09:35 PM",
       transactionHash: "0x123...abc",
       currentPlan: user?.currentPlan || "Unknown",
-      activeUntil: "28.02.2025, 09:35 PM"
+      activeUntil: user?.activeUntil || "Unknown"
     };
   });
 
@@ -47,15 +64,47 @@ const ReferredUsers = () => {
       value: "123,456 BUSD",
       icon: DollarSign,
       change: "Current month"
+    },
+    {
+      title: "Active Members",
+      value: "12,345",
+      icon: Users,
+      change: "With active subscription"
+    },
+    {
+      title: "Bronze Members",
+      value: "2,345",
+      icon: Users,
+      change: "Total Bronze plans"
+    },
+    {
+      title: "Gold Members",
+      value: "2,345",
+      icon: Users,
+      change: "Total Gold plans"
+    },
+    {
+      title: "Diamond Members",
+      value: "2,345",
+      icon: Diamond,
+      change: "Total Diamond plans"
     }
   ];
 
-  const latestActivities = currentUser.referredUsers.map(memberId => ({
-    id: memberId,
-    date: "25.01.2025, 11:53 PM",
-    plan: "Gold",
-    activeUntil: "25.02.2025, 11:53 PM",
-    transactionHash: "0x123...456"
+  const latestActivities = members.map(member => ({
+    id: member.id,
+    date: member.registrationDate,
+    plan: member.currentPlan,
+    activeUntil: member.activeUntil,
+    transactionHash: member.transactionHash
+  }));
+
+  const recentMembers = members.map(member => ({
+    id: member.id,
+    plan: member.currentPlan,
+    date: member.registrationDate,
+    invitedBy: currentUser.id,
+    transactionHash: member.transactionHash
   }));
 
   return (
@@ -68,11 +117,25 @@ const ReferredUsers = () => {
         />
 
         <Card className="bg-card">
-          <CardHeader>
-            <CardTitle>Total Members</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle>Members</CardTitle>
+            <Select
+              value={filter}
+              onValueChange={(value) => setFilter(value)}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by plan" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Members</SelectItem>
+                <SelectItem value="bronze">Bronze Members</SelectItem>
+                <SelectItem value="gold">Gold Members</SelectItem>
+                <SelectItem value="diamond">Diamond Members</SelectItem>
+              </SelectContent>
+            </Select>
           </CardHeader>
           <CardContent>
-            <MembersTable members={referredUsers} title="Total Members" />
+            <MembersTable members={members} title="Members" />
           </CardContent>
         </Card>
 
@@ -82,6 +145,15 @@ const ReferredUsers = () => {
           </CardHeader>
           <CardContent>
             <LatestActivity activities={latestActivities} />
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card">
+          <CardHeader>
+            <CardTitle>Network Overview</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <RecentNetworkMembers members={recentMembers} />
           </CardContent>
         </Card>
 
