@@ -10,7 +10,7 @@ import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 const UserProfile = () => {
   const { userId } = useParams();
   const user = getUserById(userId || "");
-  const isLoggedUser = userId === "yhn4bsd"; // This should be replaced with actual auth logic
+  const isLoggedUser = userId === "member1"; // This should be replaced with actual auth logic
 
   if (!user) {
     return (
@@ -30,29 +30,76 @@ const UserProfile = () => {
       title: "Total Members",
       value: user.referredUsers.length.toString(),
       icon: Users,
-      change: "Total referred members",
-      link: `/${userId}/referred-members`
+      change: "Total referred members"
     },
     {
       title: "Bronze Members",
       value: user.bronzeMembers.length.toString(),
       icon: Users,
-      change: "Total Bronze plans",
-      link: `/${userId}/bronze-members`
+      change: "Total Bronze plans"
     },
     {
       title: "Gold Members",
       value: user.goldMembers.length.toString(),
       icon: Users,
-      change: "Total Gold plans",
-      link: `/${userId}/gold-members`
+      change: "Total Gold plans"
     },
     {
       title: "Diamond Members",
       value: user.diamondMembers.length.toString(),
       icon: Diamond,
-      change: "Total Diamond plans",
-      link: `/${userId}/diamond-members`
+      change: "Total Diamond plans"
+    }
+  ];
+
+  const platformStats = [
+    {
+      title: "Total Members",
+      value: "1,234,567",
+      icon: Users,
+      change: "Active + Inactive members"
+    },
+    {
+      title: "Transactions Made",
+      value: "153,499",
+      icon: ArrowRightLeft,
+      change: "Total transactions"
+    },
+    {
+      title: "All Time Earnings",
+      value: "1,234,567 BUSD",
+      icon: DollarSign,
+      change: "Combined earnings"
+    },
+    {
+      title: "Monthly Earnings",
+      value: "123,456 BUSD",
+      icon: DollarSign,
+      change: "Current month"
+    },
+    {
+      title: "Active Members",
+      value: "12,345",
+      icon: Users,
+      change: "With active subscription"
+    },
+    {
+      title: "Bronze Members",
+      value: "2,345",
+      icon: Users,
+      change: "Total Bronze plans"
+    },
+    {
+      title: "Gold Members",
+      value: "2,345",
+      icon: Users,
+      change: "Total Gold plans"
+    },
+    {
+      title: "Diamond Members",
+      value: "2,345",
+      icon: Diamond,
+      change: "Total Diamond plans"
     }
   ];
 
@@ -60,14 +107,14 @@ const UserProfile = () => {
   const latestActivities = user.referredUsers.map(memberId => ({
     id: memberId,
     date: "25.01.2025, 11:53 PM",
-    plan: "Gold", // This should come from actual user data
+    plan: getUserById(memberId)?.currentPlan || "Unknown",
     activeUntil: "25.02.2025, 11:53 PM",
     transactionHash: "0x123...456"
   }));
 
   const recentMembers = user.referredUsers.map(memberId => ({
     id: memberId,
-    plan: "Gold", // This should come from actual user data
+    plan: getUserById(memberId)?.currentPlan || "Unknown",
     date: "25.01.2025, 11:53 PM",
     invitedBy: user.id,
     transactionHash: "0x123...456"
@@ -85,6 +132,7 @@ const UserProfile = () => {
         stats={userStats}
         title="User Statistics"
         username={userId}
+        isLoggedUser={isLoggedUser}
       />
 
       <Card className="bg-card">
@@ -104,6 +152,11 @@ const UserProfile = () => {
           <RecentNetworkMembers members={recentMembers} />
         </CardContent>
       </Card>
+
+      <PlatformStats 
+        stats={platformStats}
+        className="mt-6"
+      />
     </div>
   );
 };

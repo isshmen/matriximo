@@ -16,9 +16,13 @@ interface PlatformStatsProps {
   username?: string;
   title?: string;
   className?: string;
+  isLoggedUser?: boolean;
 }
 
-const PlatformStats = ({ stats, username, title = "Platform Statistics", className }: PlatformStatsProps) => {
+const PlatformStats = ({ stats, username, title = "Platform Statistics", className, isLoggedUser = false }: PlatformStatsProps) => {
+  const showButton = !isLoggedUser && username;
+  const buttonPath = isLoggedUser ? "/dashboard/members" : `/${username}/referred-members`;
+
   return (
     <Card className={`bg-card ${className}`}>
       <CardHeader>
@@ -39,9 +43,9 @@ const PlatformStats = ({ stats, username, title = "Platform Statistics", classNa
             </div>
           ))}
         </div>
-        {username && (
+        {(showButton || isLoggedUser) && (
           <div className="mt-6">
-            <Link to={`/${username}/referred-members`}>
+            <Link to={buttonPath}>
               <Button className="w-full">
                 View all referred members
               </Button>

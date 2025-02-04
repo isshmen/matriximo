@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DashboardLayout from "@/components/DashboardLayout";
@@ -8,7 +9,6 @@ import LatestActivity from "@/components/LatestActivity";
 import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 import { Users, DollarSign, ArrowRightLeft, Diamond } from "lucide-react";
 import { getUserById } from "@/data/sampleUsers";
-import { useState } from "react";
 
 const ReferredUsers = () => {
   const [filter, setFilter] = useState("all");
@@ -17,16 +17,12 @@ const ReferredUsers = () => {
   if (!currentUser) return null;
 
   const getFilteredMembers = () => {
-    switch (filter) {
-      case "bronze":
-        return currentUser.bronzeMembers;
-      case "gold":
-        return currentUser.goldMembers;
-      case "diamond":
-        return currentUser.diamondMembers;
-      default:
-        return currentUser.referredUsers;
-    }
+    const allMembers = currentUser.referredUsers;
+    if (filter === "all") return allMembers;
+    return allMembers.filter(userId => {
+      const user = getUserById(userId);
+      return user?.currentPlan.toLowerCase() === filter;
+    });
   };
 
   const members = getFilteredMembers().map(userId => {
