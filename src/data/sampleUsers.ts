@@ -10,7 +10,30 @@ export const sampleUsers = [
     referredUsers: ["member2", "member3", "member4"],
     bronzeMembers: ["member2"],
     goldMembers: ["member3"],
-    diamondMembers: ["member4"]
+    diamondMembers: ["member4"],
+    activities: [
+      {
+        id: "member2",
+        date: "2024-02-15",
+        plan: "Bronze",
+        activeUntil: "2025-02-15",
+        transactionHash: "0x123...abc"
+      },
+      {
+        id: "member3",
+        date: "2024-02-10",
+        plan: "Gold",
+        activeUntil: "2025-02-10",
+        transactionHash: "0x456...def"
+      },
+      {
+        id: "member4",
+        date: "2024-02-05",
+        plan: "Diamond",
+        activeUntil: "2025-02-05",
+        transactionHash: "0x789...ghi"
+      }
+    ]
   },
   {
     id: "member2",
@@ -23,7 +46,23 @@ export const sampleUsers = [
     referredUsers: ["member5", "member6"],
     bronzeMembers: ["member5"],
     goldMembers: ["member6"],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: [
+      {
+        id: "member5",
+        date: "2024-02-12",
+        plan: "Bronze",
+        activeUntil: "2025-02-12",
+        transactionHash: "0xabc...123"
+      },
+      {
+        id: "member6",
+        date: "2024-02-08",
+        plan: "Gold",
+        activeUntil: "2025-02-08",
+        transactionHash: "0xdef...456"
+      }
+    ]
   },
   {
     id: "member3",
@@ -36,7 +75,23 @@ export const sampleUsers = [
     referredUsers: ["member7", "member8"],
     bronzeMembers: ["member7"],
     goldMembers: [],
-    diamondMembers: ["member8"]
+    diamondMembers: ["member8"],
+    activities: [
+      {
+        id: "member7",
+        date: "2024-02-14",
+        plan: "Bronze",
+        activeUntil: "2025-02-14",
+        transactionHash: "0xghi...789"
+      },
+      {
+        id: "member8",
+        date: "2024-02-09",
+        plan: "Diamond",
+        activeUntil: "2025-02-09",
+        transactionHash: "0xjkl...012"
+      }
+    ]
   },
   {
     id: "member4",
@@ -49,7 +104,23 @@ export const sampleUsers = [
     referredUsers: ["member9", "member10"],
     bronzeMembers: ["member9"],
     goldMembers: ["member10"],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: [
+      {
+        id: "member9",
+        date: "2024-02-13",
+        plan: "Bronze",
+        activeUntil: "2025-02-13",
+        transactionHash: "0xmno...345"
+      },
+      {
+        id: "member10",
+        date: "2024-02-07",
+        plan: "Gold",
+        activeUntil: "2025-02-07",
+        transactionHash: "0xpqr...678"
+      }
+    ]
   },
   {
     id: "member5",
@@ -62,7 +133,8 @@ export const sampleUsers = [
     referredUsers: [],
     bronzeMembers: [],
     goldMembers: [],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: []
   },
   {
     id: "member6",
@@ -75,7 +147,8 @@ export const sampleUsers = [
     referredUsers: [],
     bronzeMembers: [],
     goldMembers: [],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: []
   },
   {
     id: "member7",
@@ -88,7 +161,8 @@ export const sampleUsers = [
     referredUsers: [],
     bronzeMembers: [],
     goldMembers: [],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: []
   },
   {
     id: "member8",
@@ -101,7 +175,8 @@ export const sampleUsers = [
     referredUsers: [],
     bronzeMembers: [],
     goldMembers: [],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: []
   },
   {
     id: "member9",
@@ -114,7 +189,8 @@ export const sampleUsers = [
     referredUsers: [],
     bronzeMembers: [],
     goldMembers: [],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: []
   },
   {
     id: "member10",
@@ -127,7 +203,8 @@ export const sampleUsers = [
     referredUsers: [],
     bronzeMembers: [],
     goldMembers: [],
-    diamondMembers: []
+    diamondMembers: [],
+    activities: []
   }
 ];
 
