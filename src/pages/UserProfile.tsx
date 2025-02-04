@@ -112,14 +112,6 @@ const UserProfile = () => {
     transactionHash: "0x123...456"
   }));
 
-  const recentMembers = user.referredUsers.map(memberId => ({
-    id: memberId,
-    plan: getUserById(memberId)?.currentPlan || "Unknown",
-    date: "25.01.2025, 11:53 PM",
-    invitedBy: user.id,
-    transactionHash: "0x123...456"
-  }));
-
   return (
     <div className="container mx-auto p-4 space-y-6">
       <UserInfoCard 
@@ -149,7 +141,7 @@ const UserProfile = () => {
           <CardTitle>Network Overview</CardTitle>
         </CardHeader>
         <CardContent>
-          <RecentNetworkMembers members={recentMembers} />
+          <RecentNetworkMembers members={user.networkMembers} />
         </CardContent>
       </Card>
 

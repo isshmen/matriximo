@@ -1,13 +1,15 @@
+
 import DashboardLayout from "@/components/DashboardLayout";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import RecentNetworkMembers from "@/components/RecentNetworkMembers";
-import { Users, DollarSign, ArrowRightLeft, Diamond, Wallet } from "lucide-react";
+import LatestActivity from "@/components/LatestActivity";
+import { Users, DollarSign, ArrowRightLeft, Diamond } from "lucide-react";
 
 const Dashboard = () => {
   const currentUser = {
-    id: "user123",
+    id: "member1",
     wallet: "0x1234...5678",
     currentPlan: "Diamond",
     activeUntil: "March 1, 2025, 11:54 PM",
@@ -21,29 +23,25 @@ const Dashboard = () => {
       title: "Total Members",
       value: "45",
       icon: Users,
-      change: "+5 new this month",
-      link: "/dashboard/members"
+      change: "+5 new this month"
     },
     {
       title: "Bronze Members",
       value: "15",
       icon: Users,
-      change: "+3 new this month",
-      link: "/dashboard/bronze-members"
+      change: "+3 new this month"
     },
     {
       title: "Gold Members",
       value: "13",
       icon: Users,
-      change: "+4 new this month",
-      link: "/dashboard/gold-members"
+      change: "+4 new this month"
     },
     {
       title: "Diamond Members",
       value: "17",
       icon: Diamond,
-      change: "+2 new this month",
-      link: "/dashboard/diamond-members"
+      change: "+2 new this month"
     }
   ];
 
@@ -100,14 +98,14 @@ const Dashboard = () => {
 
   const recentMembers = [
     {
-      id: "member1",
+      id: "member2",
       plan: "Diamond",
       date: "25.01.2025, 11:53 PM",
       invitedBy: currentUser.id,
       transactionHash: "0x123...456"
     },
     {
-      id: "member2",
+      id: "member3",
       plan: "Gold",
       date: "24.01.2025, 10:30 PM",
       invitedBy: currentUser.id,
@@ -115,22 +113,36 @@ const Dashboard = () => {
     }
   ];
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-  };
+  const latestActivities = recentMembers.map(member => ({
+    id: member.id,
+    date: member.date,
+    plan: member.plan,
+    activeUntil: "25.02.2025, 11:53 PM",
+    transactionHash: member.transactionHash
+  }));
 
   return (
     <div className="container mx-auto p-4 space-y-6">
       <UserInfoCard 
         {...currentUser}
-        onLogout={handleLogout}
+        onLogout={() => console.log("Logging out...")}
         isOwner={true}
       />
       
       <PlatformStats 
         stats={userStats} 
         title="User Statistics"
+        isLoggedUser={true}
       />
+
+      <Card className="bg-card">
+        <CardHeader>
+          <CardTitle>Latest Activity</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <LatestActivity activities={latestActivities} />
+        </CardContent>
+      </Card>
       
       <Card className="bg-card">
         <CardHeader>
