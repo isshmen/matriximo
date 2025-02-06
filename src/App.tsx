@@ -30,7 +30,13 @@ function App() {
         />
         <main className="flex-1">
           <Routes>
-            <Route path="/" element={<Plans isLoggedIn={isLoggedIn} activePlan={"Diamond"} />} />
+            <Route path="/" element={
+              isLoggedIn ? (
+                <Navigate to="/dashboard" replace />
+              ) : (
+                <Plans isLoggedIn={isLoggedIn} activePlan={"Diamond"} />
+              )
+            } />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/members" element={<ReferredUsers />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
