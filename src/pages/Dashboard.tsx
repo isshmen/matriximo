@@ -2,6 +2,7 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
+import Plans from "@/components/Plans";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import RecentNetworkMembers from "@/components/RecentNetworkMembers";
 import LatestActivity from "@/components/LatestActivity";
@@ -129,6 +130,11 @@ const Dashboard = () => {
         isOwner={true}
       />
       
+      <Plans 
+        isLoggedIn={true}
+        activePlan={currentUser.currentPlan}
+      />
+
       <PlatformStats 
         stats={userStats} 
         title="User Statistics"
