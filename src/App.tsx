@@ -7,6 +7,7 @@ import UserReferredMembers from "./pages/user/UserReferredMembers";
 import HowItWorks from "./pages/HowItWorks";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
+import Plans from "./components/Plans";
 
 function App() {
   // This is temporary - should be replaced with actual wallet connection logic
@@ -29,7 +30,7 @@ function App() {
         />
         <main className="flex-1">
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<Plans isLoggedIn={isLoggedIn} activePlan={"Diamond"} />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/members" element={<ReferredUsers />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
