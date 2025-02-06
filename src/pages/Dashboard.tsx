@@ -131,8 +131,8 @@ const Dashboard = () => {
       />
       
       <Plans 
-        isLoggedIn={true}
-        activePlan={currentUser.currentPlan}
+        isLoggedIn={false}
+        activePlan={null}
       />
 
       <PlatformStats 
