@@ -30,8 +30,8 @@ const UserInfoCard = ({
 }: UserInfoCardProps) => {
   const { toast } = useToast();
   const referralLink = `site.com/ref/${id}`;
-  const formattedActiveUntil = "01.03.2025, 11:54 PM"; // This should be properly formatted from the activeUntil prop
-  const walletExplorerUrl = `https://bscscan.com/address/${wallet}`; // Adjust the explorer URL based on your blockchain
+  const formattedActiveUntil = "01.03.2025, 11:54 PM";
+  const walletExplorerUrl = `https://bscscan.com/address/${wallet}`;
 
   const copyReferralLink = () => {
     navigator.clipboard.writeText(referralLink);
@@ -50,16 +50,16 @@ const UserInfoCard = ({
         {/* First Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <p className="text-lg font-semibold">{id}</p>
-            <p className="text-sm text-muted-foreground">Username</p>
+            <p className="text-sm text-muted-foreground font-semibold">{id}</p>
+            <p className="text-lg">Username</p>
           </div>
           <div className="space-y-2">
-            <p className="text-lg font-semibold">${monthlyEarnings.replace(' BUSD', '')}</p>
-            <p className="text-sm text-muted-foreground">Monthly Earnings</p>
+            <p className="text-sm text-muted-foreground font-semibold">${monthlyEarnings.replace(' BUSD', '')}</p>
+            <p className="text-lg">Monthly Earnings</p>
           </div>
           <div className="space-y-2">
-            <p className="text-lg font-semibold">{totalReferrals}</p>
-            <p className="text-sm text-muted-foreground">Referred Users</p>
+            <p className="text-sm text-muted-foreground font-semibold">{totalReferrals}</p>
+            <p className="text-lg">Referred Users</p>
             <Link to="/dashboard/members">
               <Button variant="outline" className="w-full">
                 View all users
@@ -71,16 +71,16 @@ const UserInfoCard = ({
         {/* Second Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <p className="text-lg font-semibold">{currentPlan}</p>
-            <p className="text-sm text-muted-foreground">Active Plan</p>
+            <p className="text-sm text-muted-foreground font-semibold">{currentPlan}</p>
+            <p className="text-lg">Active Plan</p>
           </div>
           <div className="space-y-2">
-            <p className="text-lg font-semibold">${totalEarnings.replace(' BUSD', '')}</p>
-            <p className="text-sm text-muted-foreground">Total Earnings</p>
+            <p className="text-sm text-muted-foreground font-semibold">${totalEarnings.replace(' BUSD', '')}</p>
+            <p className="text-lg">Total Earnings</p>
           </div>
           <div className="space-y-2">
-            <p className="text-lg font-semibold">{wallet}</p>
-            <p className="text-sm text-muted-foreground">Wallet</p>
+            <p className="text-sm text-muted-foreground font-semibold">{wallet}</p>
+            <p className="text-lg">Wallet</p>
             <a 
               href={walletExplorerUrl}
               target="_blank"
@@ -95,8 +95,8 @@ const UserInfoCard = ({
         {/* Third Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <p className="text-lg font-semibold">{formattedActiveUntil}</p>
-            <p className="text-sm text-muted-foreground">Active Until</p>
+            <p className="text-sm text-muted-foreground font-semibold">{formattedActiveUntil}</p>
+            <p className="text-lg">Active Until</p>
             {isOwner && (
               <Button variant="outline" className="w-full">
                 <Clock className="mr-2 h-4 w-4" />
@@ -105,9 +105,9 @@ const UserInfoCard = ({
             )}
           </div>
           <div className="space-y-2">
-            <p className="text-lg font-semibold">{referralLink}</p>
-            <p className="text-sm text-muted-foreground">Referral Link</p>
-            <Button className="w-full" onClick={copyReferralLink}>
+            <p className="text-sm text-muted-foreground font-semibold">{referralLink}</p>
+            <p className="text-lg">Referral Link</p>
+            <Button variant="outline" className="w-full" onClick={copyReferralLink}>
               <Copy className="mr-2 h-4 w-4" />
               Copy Referral Link
             </Button>
