@@ -1,4 +1,3 @@
-
 import DashboardLayout from "@/components/DashboardLayout";
 import UserInfoCard from "@/components/UserInfoCard";
 import PlatformStats from "@/components/PlatformStats";
@@ -16,35 +15,9 @@ const Dashboard = () => {
     activeUntil: "March 1, 2025, 11:54 PM",
     monthlyEarnings: "3,500 BUSD",
     monthlyEarningsChange: "+12.5% from last month",
-    totalEarnings: "42,000 BUSD"
+    totalEarnings: "42,000 BUSD",
+    totalReferrals: "45"
   };
-
-  const userStats = [
-    {
-      title: "Total Members",
-      value: "45",
-      icon: Users,
-      change: "+5 new this month"
-    },
-    {
-      title: "Bronze Members",
-      value: "15",
-      icon: Users,
-      change: "+3 new this month"
-    },
-    {
-      title: "Gold Members",
-      value: "13",
-      icon: Users,
-      change: "+4 new this month"
-    },
-    {
-      title: "Diamond Members",
-      value: "17",
-      icon: Diamond,
-      change: "+2 new this month"
-    }
-  ];
 
   const platformStats = [
     {
@@ -133,12 +106,6 @@ const Dashboard = () => {
       <Plans 
         isLoggedIn={false}
         activePlan={null}
-      />
-
-      <PlatformStats 
-        stats={userStats} 
-        title="User Statistics"
-        isLoggedUser={true}
       />
 
       <Card className="bg-card">

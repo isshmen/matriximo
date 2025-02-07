@@ -24,34 +24,6 @@ const UserProfile = () => {
     );
   }
 
-  // User-specific statistics
-  const userStats = [
-    {
-      title: "Total Members",
-      value: user.referredUsers.length.toString(),
-      icon: Users,
-      change: "Total referred members"
-    },
-    {
-      title: "Bronze Members",
-      value: user.bronzeMembers.length.toString(),
-      icon: Users,
-      change: "Total Bronze plans"
-    },
-    {
-      title: "Gold Members",
-      value: user.goldMembers.length.toString(),
-      icon: Users,
-      change: "Total Gold plans"
-    },
-    {
-      title: "Diamond Members",
-      value: user.diamondMembers.length.toString(),
-      icon: Diamond,
-      change: "Total Diamond plans"
-    }
-  ];
-
   const platformStats = [
     {
       title: "Total Members",
@@ -118,13 +90,7 @@ const UserProfile = () => {
         {...user}
         onLogout={() => console.log("Logging out...")}
         isOwner={isLoggedUser}
-      />
-      
-      <PlatformStats 
-        stats={userStats}
-        title="User Statistics"
-        username={userId}
-        isLoggedUser={isLoggedUser}
+        totalReferrals={user.referredUsers.length.toString()}
       />
 
       <Card className="bg-card">
