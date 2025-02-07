@@ -141,16 +141,25 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
               </div>
             )}
             <CardHeader>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <CardTitle className="text-2xl text-center cursor-help">{plan.name}</CardTitle>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="max-w-xs">{plan.description}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <div className="flex items-center justify-center gap-2">
+                <CardTitle className="text-2xl text-center">{plan.name}</CardTitle>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="h-8 w-8 -mt-1"
+                      >
+                        <Info className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs">{plan.description}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
               <CardDescription className="text-center text-2xl font-bold">
                 ${plan.price}
                 <span className="text-sm font-normal">/month</span>
@@ -183,3 +192,4 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
 };
 
 export default Plans;
+
