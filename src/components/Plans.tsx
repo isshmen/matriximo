@@ -34,7 +34,8 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
         goldEarnings: "25",
         diamondEarnings: "50"
       },
-      color: "bg-slate-200"
+      color: "bg-slate-200",
+      description: "Perfect for those just starting their journey. Basic features with solid earning potential."
     },
     {
       name: "Gold Plan",
@@ -44,7 +45,8 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
         goldEarnings: "35",
         diamondEarnings: "70"
       },
-      color: "bg-yellow-100"
+      color: "bg-yellow-100",
+      description: "For ambitious earners. Enhanced features and increased earning opportunities."
     },
     {
       name: "Diamond Plan",
@@ -54,7 +56,8 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
         goldEarnings: "45",
         diamondEarnings: "90"
       },
-      color: "bg-blue-100"
+      color: "bg-blue-100",
+      description: "Our premium tier. Maximum earnings and exclusive benefits for serious investors."
     }
   ];
 
@@ -138,7 +141,16 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
               </div>
             )}
             <CardHeader>
-              <CardTitle className="text-2xl text-center">{plan.name}</CardTitle>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <CardTitle className="text-2xl text-center cursor-help">{plan.name}</CardTitle>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="max-w-xs">{plan.description}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <CardDescription className="text-center text-2xl font-bold">
                 ${plan.price}
                 <span className="text-sm font-normal">/month</span>
@@ -171,4 +183,3 @@ const Plans = ({ isLoggedIn, activePlan }: PlanProps) => {
 };
 
 export default Plans;
-
