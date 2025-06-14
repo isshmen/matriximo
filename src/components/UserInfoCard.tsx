@@ -50,16 +50,16 @@ const UserInfoCard = ({
         {/* First Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">{id}</p>
-            <p className="text-lg">Username</p>
+            <p className="text-lg">{id}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Username</p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">${monthlyEarnings.replace(' BUSD', '')}</p>
-            <p className="text-lg">Monthly Earnings</p>
+            <p className="text-lg">${monthlyEarnings.replace(' BUSD', '')}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Monthly Earnings</p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">{totalReferrals}</p>
-            <p className="text-lg">Referred Users</p>
+            <p className="text-lg">{totalReferrals}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Referred Users</p>
             <Link to="/dashboard/members">
               <Button variant="outline" className="w-full">
                 View all users
@@ -71,16 +71,16 @@ const UserInfoCard = ({
         {/* Second Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">{currentPlan}</p>
-            <p className="text-lg">Active Plan</p>
+            <p className="text-lg">{currentPlan}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Active Plan</p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">${totalEarnings.replace(' BUSD', '')}</p>
-            <p className="text-lg">Total Earnings</p>
+            <p className="text-lg">${totalEarnings.replace(' BUSD', '')}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Total Earnings</p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">{wallet}</p>
-            <p className="text-lg">Wallet</p>
+            <p className="text-lg">{wallet}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Wallet</p>
             <a 
               href={walletExplorerUrl}
               target="_blank"
@@ -95,8 +95,8 @@ const UserInfoCard = ({
         {/* Third Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">{formattedActiveUntil}</p>
-            <p className="text-lg">Active Until</p>
+            <p className="text-lg">{formattedActiveUntil}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Active Until</p>
             {isOwner && (
               <Button variant="outline" className="w-full">
                 <Clock className="mr-2 h-4 w-4" />
@@ -105,8 +105,8 @@ const UserInfoCard = ({
             )}
           </div>
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground font-semibold">{referralLink}</p>
-            <p className="text-lg">Referral Link</p>
+            <p className="text-lg">{referralLink}</p>
+            <p className="text-sm text-muted-foreground font-semibold">Referral Link</p>
             <Button variant="outline" className="w-full" onClick={copyReferralLink}>
               <Copy className="mr-2 h-4 w-4" />
               Copy Referral Link
